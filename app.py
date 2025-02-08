@@ -7,7 +7,7 @@ CORS(app, support_credentials=True)
 
 
 # Configure the database connection (PostgreSQL or SQLite)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@localhost:5432/forage_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ffdb_zyjl_user:2tK1CbCFlFOBypyvmuaI6gJuLXA8rmXM@dpg-cujt9952ng1s73bcarm0-a.oregon-postgres.render.com/ffdb_zyjl'
 db = SQLAlchemy(app)
 
 # Define the model for points
