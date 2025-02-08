@@ -1,25 +1,50 @@
-import 'leaflet/dist/leaflet.css'; // Import Leaflet CSS
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, { useEffect, useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
+
+function AddMarker({ onNewPoint }) {
+  useMapEvents({
+    click(e) {
+      const { lat, lng } = e.latlng;
+      const description = prompt('Enter a description for this point:');
+      if (description) {
+        onNewPoint({ lat, lon: lng, description });
+      }
+    },
+  });
+  return null;
+}
 
 export default function Map() {
-    return (
-        <div>
-            <MapContainer
-                center={[51.505, -0.09]}
-                zoom={13}
-                scrollWheelZoom={false}
-                style={{ height: "100vh", width: "100%" }} // Ensure proper rendering
-            >
-                <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                <Marker position={[51.505, -0.09]}>
-                <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-                </Marker>
-            </MapContainer>
-        </div>
-    )
+  const [points, setPoints] = useState([]);
+
+  // Fetch points from the backend
+  useEffect(() => {
+    fetch('http://localhost:5000/points')
+      .then((res) => res.json())
+      .then((data) => setPoints(data));
+  }, []);
+
+  const handleNewPoint = (newPoint) => {
+    fetch('http://localhost:5000/points', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newPoint),
+    }).then(() => {
+      setPoints([...points, newPoint]);
+    });
+  };
+
+  return (
+    <MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: "100vh", width: "100%" }}>
+      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      <AddMarker onNewPoint={handleNewPoint} />
+      {points.map((point, idx) => (
+        <Marker key={idx} position={[point.lat, point.lon]}>
+          <Popup>{point.description}</Popup>
+        </Marker>
+      ))}
+    </MapContainer>
+  );
 }
