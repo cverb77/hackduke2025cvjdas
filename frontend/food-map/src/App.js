@@ -1,4 +1,5 @@
 import Map from './components/Map';
+import AddPoints from './components/AddPoints';
 
 function App() {
   return (
