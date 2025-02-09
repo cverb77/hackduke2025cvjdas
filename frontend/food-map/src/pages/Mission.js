@@ -8,8 +8,8 @@ function App() {
     <div>
         <div className="relative h-screen w-screen">
         <Nav className="" />
-       
-        <div className="rounded-full h-[80vw] w-[80vw] fixed opacity-50 z-0 custom-gradient top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+        
+        <div className="rounded-full h-[110vw] w-[110vw] fixed opacity-50 z-0 custom-gradient top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
 
 
         <h1 className='text-white text-[4.5vw] font-semibold text-shadow-2 mt-[22vh] text-center z-10 relative'>
