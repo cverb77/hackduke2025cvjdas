@@ -7,9 +7,9 @@ import L from 'leaflet';
 const customIcon = new L.Icon({
     // icon attribution: <a href="https://www.flaticon.com/free-icons/placeholder" title="placeholder icons">Placeholder icons created by Freepik - Flaticon</a>
     iconUrl: '/marker.png',
-    iconSize: [30, 30],  // Adjust size of the icon
+    iconSize: [40, 40],  // Adjust size of the icon
     iconAnchor: [15, 45],  // Anchor the icon properly
-    popupAnchor: [0, -40], // Position the popup relative to the icon
+    popupAnchor: [5, -45], // Position the popup relative to the icon
   });
 
 export default function Map() {
@@ -42,7 +42,18 @@ export default function Map() {
       />
       {points.map((point, idx) => (
         <Marker key={idx} position={[point.lat, point.lon]} icon={customIcon}>
-          <Popup>{point.description}</Popup>
+          <Popup>
+            <div style={{
+                fontFamily: 'Arial, sans-serif',
+                fontSize: '17px',
+
+            }}>
+                <b>{point.title}</b><br />
+                <i>Food Category:</i> {point.food_category}<br />
+                <i>Description:</i> {point.description || 'None'}<br />
+                <i>Email:</i> {point.email || 'N/A'}
+            </div>
+          </Popup>
         </Marker>
       ))}
     </MapContainer>

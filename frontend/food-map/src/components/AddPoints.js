@@ -48,7 +48,7 @@ export default function AddPoints(props) {
                 <b>{point.title}</b><br />
                 <i>Food Category:</i> {point.food_category}<br />
                 <i>Description:</i> {point.description || 'None'}<br />
-                <i>Email:</i> {point.email || 'Not provided'}
+                <i>Email:</i> {point.email || 'N/A'}
               </Popup>
             </Marker>
           ))}
