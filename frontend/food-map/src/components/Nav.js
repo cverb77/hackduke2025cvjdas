@@ -20,7 +20,7 @@ export default function Nav() {
         ].map(({ label, path }) => (
           <li
             key={label}
-            className={`relative cursor-pointer pb-[0.5vh] transition-all duration-300 w-[8vw] text-center flex items-center justify-center hover:underline ${active === path ? "text-[#a1d140]" : ""}`}
+            className={`relative cursor-pointer pb-[0.5vh] transition-all duration-300 w-[8vw] text-center flex items-center justify-center hover:underline ${label === "JOIN THE EFFORT" ? "text-[#a1d140]" : ""}`}
           >
             <Link
               to={path}
