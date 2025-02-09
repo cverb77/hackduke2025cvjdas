@@ -15,10 +15,22 @@ export default function Map() {
 
   // Fetch points from the backend
   useEffect(() => {
-    fetch('http://localhost:5000/points')
+    fetch('https://hackduke2025cvjdas.onrender.com')
       .then((res) => res.json())
       .then((data) => setPoints(data));
   }, []);
+  
+  const handleNewPoint = (newPoint) => {
+    fetch('https://hackduke2025cvjdas.onrender.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newPoint),
+    }).then(() => {
+      setPoints([...points, newPoint]);
+    });
+  };
 
   return (
     <MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: "100vh", width: "100%" }}>
