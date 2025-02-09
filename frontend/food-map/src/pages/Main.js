@@ -61,7 +61,7 @@ function App() {
        
         <div className='w-full px-[15vw] z-10 relative'>
             <div className="bg-[#1d1d1d] w-full h-[10vh] mt-[7vh] rounded-tl-[2vw] rounded-tr-[2vw] flex">
-            {[`${tableRows - 1} Foraging Locations`, "6500+ Food Deserts", "47M Americans Suffering from Food Insecurity", "4.7B Pounds of Food Rescued from Landfills"].map((stat, index) => (
+            {[`${tableRows} Foraging Locations`, "6500+ Food Deserts", "47M Americans Suffering from Food Insecurity", "4.7B Pounds of Food Rescued from Landfills"].map((stat, index) => (
                 <div key={index} className="flex-1 border-r-2 p-[2vw] leading-[1.2] text-center border-gray-500 flex justify-center text-white text-[1.25vw] font-semibold font-blinker last:border-r-0">
                 <p className='self-center'>{stat}</p>
                 </div>
