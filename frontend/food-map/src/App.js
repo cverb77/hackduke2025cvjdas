@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Map from './components/Map';
 import AddPoints from './components/AddPoints';
 
