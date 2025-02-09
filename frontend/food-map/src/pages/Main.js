@@ -1,8 +1,16 @@
 /* eslint-disable no-unused-vars */
 import Map from '../components/Map';
 import Nav from '../components/Nav';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function App() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
+
   return (
     <div>
         <div className="relative h-screen w-screen">
@@ -39,7 +47,12 @@ function App() {
             <h3 className='text-white text-[1vw] leading-[1.5vw]'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit, tortor nec bibendum luctus, elit mi suscipit tortor, a ultrices justo ipsum ac augueLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit, tortor nec bibendum luctus, elit mi suscipit tortor, a ultrices justo ipsum ac augueLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit, tortor nec bibendum luctus, elit mi suscipit tortor, a ultrices justo ipsum ac augueLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit, tortor nec bibendum luctus, elit mi suscipit tortor, a ultrices justo ipsum ac augueLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit, tortor nec bibendum luctus, elit mi suscipit tortor, a ultrices justo ipsum ac augue...
             </h3>
-            <button className="w-[15vw] h-[7vh] mt-[4vh] bg-[#8cb638] flex justify-center self-center items-center rounded-xl text-white text-[1vw] font-semibold">
+            <button
+                className="w-[15vw] h-[7vh] mt-[4vh] bg-[#8cb638] flex justify-center self-center items-center rounded-xl text-white text-[1vw] font-semibold hover:underline"
+                onClick={() => {
+                    navigate("/contribute");
+                }}
+            >
                 Help Make a Difference
             </button>
             </div>
