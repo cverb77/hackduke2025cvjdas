@@ -76,10 +76,11 @@ export default function Map() {
         <MapContainer attributionControl={false} center={[51.505, -0.09]} zoom={13} style={{ height: 'calc(100% - 62px)', 
         width: '100%', borderBottomLeftRadius: '10px', borderBottomRightRadius: '10px' }} >
             {/*change height above to make the bar not dissapear/get messed up */}
-          <TileLayer
-            url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
-            attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          />
+            <TileLayer
+                url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?api_key=a46d0fbc-36bf-4246-aa0b-bbe8635677e7"
+                attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            />
+
 
           {/* Enable point placement only when placementMode is active */}
           {placementMode && <AddMarker onNewPoint={handleNewPoint} />}
