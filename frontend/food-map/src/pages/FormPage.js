@@ -42,7 +42,7 @@ function FormPage() {
         }, []);
 
         const handleNewPoint = (newPoint) => {
-            fetch('https://hackduke2025cvjdas.onrender.com/points', {
+            fetch('https://hackduke2025cvjdas.onrender.com/points', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
