@@ -28,7 +28,7 @@ export default function AddPoints(props) {
   return (
     <div style={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: '10px', border: props.invalidForm ? '4px solid red' : ''}}>
       <div style={{ flexGrow: 1 }}>
-        <MapContainer attributionControl={false} center={[51.505, -0.09]} zoom={13} style={{ height: '100%', width: '100%', borderRadius: '10px'}}>
+        <MapContainer attributionControl={false} center={[38.8283, -98.5795]} zoom={4.5} style={{ height: '100%', width: '100%', borderRadius: '10px'}}>
           <TileLayer
             url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?api_key=a46d0fbc-36bf-4246-aa0b-bbe8635677e7"
             attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
