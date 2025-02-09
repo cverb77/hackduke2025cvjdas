@@ -3,9 +3,18 @@ import Nav from '../components/Nav';
 import AddPoints from '../components/AddPoints';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
 
 function App() {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
+
+    const [canSubmit, changeCanSubmit] = useState(false);
+
+    const [invalidForm, setInvalidForm] = useState(false);
 
     const [formData, setFormData] = useState({
         title: "",
@@ -22,11 +31,12 @@ function App() {
         });
       };
     
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        // do other form stuff
-        navigate("/thankyou");
-        console.log(formData);
+      const handleSubmit = () => {
+        if (formData.title === "" || formData.food === "" || !canSubmit) {
+            setInvalidForm(true)
+        } else {
+            navigate("/thankyou");
+        }
       };
 
   return (
@@ -54,7 +64,7 @@ function App() {
         </div>
         
         <div className="flex justify-center items-center h-full z-10 relative mt-[-17.5vh] flex-col gap-5 px-[15vw] text-[1vw]">
-        <form
+        <div
             className="bg-[#1d1d1d] rounded-[2vw] shadow-lg w-full p-[6vh]"
             onSubmit={handleSubmit}
         >
@@ -64,10 +74,9 @@ function App() {
             type="text"
             id="title"
             name="title"
-            className="w-full p-3 rounded-md text-white bg-[#1d1d1d] border-2 border-white"
+            className={`w-full p-3 rounded-md text-white bg-[#1d1d1d] border-2 ${invalidForm ? "border-red-500" : "border-white"}`}
             value={formData.title}
             onChange={handleChange}
-            required
           />
         </div>
 
@@ -77,10 +86,9 @@ function App() {
             type="text"
             id="food"
             name="food"
-            className="w-full p-3 rounded-md text-white  bg-[#1d1d1d] border-2 border-white"
+            className={`w-full p-3 rounded-md text-white bg-[#1d1d1d] border-2 ${invalidForm ? "border-red-500" : "border-white"}`}
             value={formData.food}
             onChange={handleChange}
-            required
           />
         </div>
 
@@ -108,16 +116,21 @@ function App() {
           />
         </div>
 
-                <div className="w-full overflow-clip h-[65vh] mt-[5vh]">
-                    <AddPoints className="h-full" />
+                <div className={`w-full overflow-clip h-[65vh] mt-[5vh]`}>
+                    <AddPoints className="h-full" canSubmit={canSubmit} changeCanSubmit={changeCanSubmit} invalidForm={invalidForm}/>
                 </div>
 
                 <div className="flex justify-center">
-                    <button className="w-[15vw] h-[7vh] mt-[4vh] bg-[#8cb638] flex justify-center self-center items-center rounded-xl text-white text-[1vw] font-semibold hover:underline">
+                    <button
+                        className="w-[15vw] h-[7vh] mt-[4vh] bg-[#8cb638] flex justify-center self-center items-center rounded-xl text-white text-[1vw] font-semibold hover:underline"
+                        onClick={() => {
+                            handleSubmit();
+                        }}
+                    >
                         Submit
                     </button>
                 </div>
-            </form>
+            </div>
             
         </div>
         
