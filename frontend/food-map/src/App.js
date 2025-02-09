@@ -4,6 +4,7 @@ import Main from "./pages/Main";
 import FormPage from "./pages/FormPage";
 import About from "./pages/About"; 
 import Mission from "./pages/Mission";
+import ThankYou from "./pages/ThankYou"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/contribute" element={<FormPage />} />
           <Route path="/about" element={<About />} />
           <Route path="/mission" element={<Mission />} />
+          <Route path="/thankyou" element={<ThankYou />} />
         </Routes>
       </div>
     </Router>
