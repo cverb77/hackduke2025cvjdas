@@ -35,7 +35,7 @@ export default function Map() {
   };
 
   return (
-    <MapContainer attributionControl={false} center={[33.8283, -98.5795]} zoom={4.5} style={{ height: "100vh", width: "100%" }}>
+    <MapContainer attributionControl={false} center={[37.4407, -77.4360]} zoom={11} style={{ height: "100vh", width: "100%" }}>
       <TileLayer
         url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?api_key=a46d0fbc-36bf-4246-aa0b-bbe8635677e7"
         attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

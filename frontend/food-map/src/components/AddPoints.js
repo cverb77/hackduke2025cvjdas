@@ -9,7 +9,7 @@ const customIcon = new L.Icon({
   iconUrl: '/marker.png',
   iconSize: [40, 40],  // Adjust size of the icon
   iconAnchor: [15, 45],  // Anchor the icon properly
-  popupAnchor: [0, -40], // Position the popup relative to the icon
+  popupAnchor: [5, -45], // Position the popup relative to the icon
 });
 
 function AddMarker({ setLat, setLon }) {
@@ -35,12 +35,7 @@ export default function AddPoints(props) {
   return (
     <div style={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: '10px', border: props.invalidForm ? '4px solid red' : ''}}>
       <div style={{ flexGrow: 1 }}>
-        <MapContainer
-          attributionControl={false}
-          center={[38.8283, -98.5795]}
-          zoom={4.5}
-          style={{ height: '100%', width: '100%', borderRadius: '10px'}}
-        >
+        <MapContainer attributionControl={false} center={[37.5207, -77.4360]} zoom={11} style={{ height: '100%', width: '100%', borderRadius: '10px'}}>
           <TileLayer
             url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?api_key=a46d0fbc-36bf-4246-aa0b-bbe8635677e7"
             attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -57,11 +52,17 @@ export default function AddPoints(props) {
           {props.points.map((point, idx) => (
             <Marker key={idx} position={[point.lat, point.lon]} icon={customIcon}>
               <Popup>
-                <b>{point.title}</b><br />
-                <i>Food Category:</i> {point.food_category}<br />
-                <i>Description:</i> {point.description || 'None'}<br />
-                <i>Email:</i> {point.email || 'N/A'}
-              </Popup>
+                <div style={{
+                    fontFamily: 'Arial, sans-serif',
+                    fontSize: '17px',
+    
+                }}>
+                    <b>{point.title}</b><br />
+                    <i>Food Category:</i> {point.food_category}<br />
+                    <i>Description:</i> {point.description || 'None'}<br />
+                    <i>Email:</i> {point.email || 'N/A'}
+                </div>
+            </Popup>
             </Marker>
           ))}
         </MapContainer>
