@@ -7,55 +7,23 @@ import L from 'leaflet';
 // Custom icon definition
 const customIcon = new L.Icon({
   iconUrl: '/marker.png',
-  iconSize: [30, 30],  // Adjust size of the icon
+  iconSize: [40, 40],  // Adjust size of the icon
   iconAnchor: [15, 45],  // Anchor the icon properly
   popupAnchor: [0, -40], // Position the popup relative to the icon
 });
 
-function AddMarker({ onNewPoint }) {
+function AddMarker({ setLat, setLon }) {
   useMapEvents({
     click(e) {
       const { lat, lng } = e.latlng;
-      // Display form to gather point details
-      const title = prompt('Enter a title for this point (required):');
-      if (!title) {
-        alert('Title is required.');
-        return;
-      }
-      const food_category = prompt('Enter the food category (required):');
-      if (!food_category) {
-        alert('Food category is required.');
-        return;
-      }
-      const description = prompt('Enter a description for this point (optional):');
-      const email = prompt('Enter your email (optional):');
-
-      onNewPoint({ lat, lon: lng, title, food_category, description, email });
+      setLat(lat);
+      setLon(lng);
     },
   });
   return null;
 }
 
 export default function AddPoints(props) {
-  const [points, setPoints] = useState([]);
-
-  useEffect(() => {
-    fetch('https://hackduke2025cvjdas.onrender.com/points')
-      .then((res) => res.json())
-      .then((data) => setPoints(data));
-  }, []);
-
-  const handleNewPoint = (newPoint) => {
-    fetch('https://hackduke2025cvjdas.onrender.com/points', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newPoint),
-    }).then(() => {
-      setPoints([...points, newPoint]);
-    });
-  };
 
   return (
     <div style={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: '10px', border: props.invalidForm ? '4px solid red' : ''}}>
@@ -66,9 +34,15 @@ export default function AddPoints(props) {
             attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
 
-          {props.placementMode && <AddMarker onNewPoint={handleNewPoint} />}
+          {props.placementMode && <AddMarker setLat={props.setLat} setLon={props.setLon} />}
 
-          {points.map((point, idx) => (
+          {props.lat && (
+            <Marker position={[props.lat, props.lon]} icon={customIcon}>
+              <Popup>Your Marker</Popup>
+            </Marker>
+          )}
+
+          {props.points.map((point, idx) => (
             <Marker key={idx} position={[point.lat, point.lon]} icon={customIcon}>
               <Popup>
                 <b>{point.title}</b><br />

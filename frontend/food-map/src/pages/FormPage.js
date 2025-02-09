@@ -12,8 +12,8 @@ function FormPage() {
         window.scrollTo(0, 0);
     }, []);
 
-    const [canSubmit, changeCanSubmit] = useState(false);
-
+    const [lat, setLat] = useState(null);
+    const [lon, setLon] = useState(null);
     const [invalidForm, setInvalidForm] = useState(false);
 
     const [placementMode, setPlacementMode] = useState(false);
@@ -32,18 +32,42 @@ function FormPage() {
           [name]: value,
         });
       };
+
+      const [points, setPoints] = useState([]);
+
+        useEffect(() => {
+            fetch('https://hackduke2025cvjdas.onrender.com/points')
+            .then((res) => res.json())
+            .then((data) => setPoints(data));
+        }, []);
+
+        const handleNewPoint = (newPoint) => {
+            fetch('https://hackduke2025cvjdas.onrender.com/points', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newPoint),
+            }).then(() => {
+            setPoints([...points, newPoint]);
+            });
+        };
     
       const handleSubmit = () => {
-        if (formData.title === "" || formData.food === "" || !canSubmit) {
+        if (formData.title === "" || formData.food === "" || !(lat && lon)) {
             setInvalidForm(true)
         } else {
+            handleNewPoint({ lat, lon, title: formData.title, food_category: formData.food, description: formData.description, email: formData.email })
             navigate("/thankyou");
         }
       };
 
   return (
     <div>
-        <div className="relative h-screen w-screen">
+        <div
+            className="relative h-screen w-screen"
+        >
+
         <Nav className="" />
         
         <div className="rounded-full h-[80vw] w-[80vw] fixed opacity-50 z-0 custom-gradient top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
@@ -127,8 +151,10 @@ function FormPage() {
                 >
                     {placementMode ? "I'd like to keep scrolling" : "I'm ready to place my point!"}
                 </button>
-                <div className={`w-full overflow-clip h-[65vh] mt-[5vh]`}>
-                    <AddPoints className="h-full" canSubmit={canSubmit} changeCanSubmit={changeCanSubmit} invalidForm={invalidForm} placementMode={placementMode} setPlacementMode={setPlacementMode}/>
+                <div
+                    className={`w-full overflow-clip h-[65vh] mt-[5vh]`}
+                >
+                    <AddPoints className="h-full" points={points} lat={lat} lon={lon} setLat={setLat} setLon={setLon} invalidForm={invalidForm} placementMode={placementMode} setPlacementMode={setPlacementMode}/>
                 </div>
 
                 <div className="flex justify-center flex-col items-center">
