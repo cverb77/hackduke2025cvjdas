@@ -7,7 +7,7 @@ CORS(app, support_credentials=True)
 
 
 # Configure the database connection (PostgreSQL or SQLite)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ffdb_zyjl_user:2tK1CbCFlFOBypyvmuaI6gJuLXA8rmXM@dpg-cujt9952ng1s73bcarm0-a.oregon-postgres.render.com/ffdb_zyjl'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://freefordb_user:1YdSmMFZYOJkTRmmM6px9pX3I7ZcujPS@dpg-cuk1fv2j1k6c73d3c8cg-a.virginia-postgres.render.com/freefordb'
 db = SQLAlchemy(app)
 
 # Define the model for points
