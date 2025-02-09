@@ -65,34 +65,20 @@ function FormPage() {
   return (
     <div>
         <div
-            className="relative h-screen w-screen"
+            className="relative h-[100vh] w-screen"
         >
 
         <Nav className="" />
         
-        <div className="rounded-full h-[80vw] w-[80vw] fixed opacity-50 z-0 custom-gradient top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="rounded-full h-[110vw] w-[110vw] fixed opacity-50 z-0 custom-gradient top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
 
-        <h1 className='text-white text-[4.5vw] font-semibold text-shadow-2 mt-[22vh] text-center z-10 relative'>
-            Placeholder Text 2
+        <h1 className='text-white text-[4.5vw] font-semibold text-shadow-2 mt-[22vh] text-center z-[50] relative'>
+            Placeholder Text
         </h1>
-        <h2 className='text-white text-[2vw] text-shadow-2 text-center z-10 relative'>
-            Sub-placeholder Text 2
-        </h2>
-        
-        <div className='w-full px-[15vw] z-10 relative'>
-            <div className="bg-[#1d1d1d] w-full h-[10vh] mt-[7vh] rounded-tl-[2vw] rounded-tr-[4vw] flex">
-            {["STAT 1", "STAT 2", "STAT 3", "STAT 4"].map((stat, index) => (
-                <div key={index} className="flex-1 border-r-2 border-gray-500 flex justify-center text-white text-[1.5vw] font-semibold font-blinker last:border-r-0">
-                <p className='self-center'>{stat}</p>
-                </div>
-            ))}
-            </div>
-        </div>
-        
-        <div className="flex justify-center items-center h-full z-10 relative mt-[-17.5vh] flex-col gap-5 px-[15vw] text-[1vw]">
+
+        <div className="flex justify-center items-center h-full z-10 relative mt-[2vh] flex-col gap-5 px-[15vw] text-[1vw]">
         <div
-            className="bg-[#1d1d1d] rounded-[2vw] shadow-lg w-full p-[6vh]"
-            onSubmit={handleSubmit}
+            className="bg-[#1d1d1d] rounded-[2vw] shadow-lg w-full p-[6vh] mt-[89vh]"
         >
         <div className="mb-4">
           <label htmlFor="title" className="block text-white mb-2 text-[1.5vw]">Title</label>
@@ -143,14 +129,19 @@ function FormPage() {
         </div>
                 
                 <h1 className="block text-white text-[1.5vw] mt-[3vh] -mb-[2vh]">Location</h1>
-                <button
-                    className="w-[15vw] h-[7vh] mt-[4vh] bg-[#8cb638] flex justify-center self-center items-center rounded-xl text-white text-[1vw] font-semibold hover:underline"
-                    onClick={() => {
-                        setPlacementMode(!placementMode)
-                    }}
-                >
-                    {placementMode ? "I'd like to keep scrolling" : "I'm ready to place my point!"}
-                </button>
+                <div className='flex items-center gap-[3vh]'>
+                    <button
+                        className="w-[15vw] h-[7vh] mt-[4vh] bg-[#8cb638] flex justify-center self-center items-center rounded-xl text-white text-[1vw] font-semibold hover:underline"
+                        onClick={() => {
+                            setPlacementMode(!placementMode)
+                        }}
+                    >
+                        {placementMode ? "I'd like to keep scrolling" : "I'm ready to place my point!"}
+                    </button>
+                    <h1 className="block text-white text-[1vw] mt-[3vh] -mb-[2vh]">Instructions: Find your point on the map. Once ready, click the button to the left to select your location.</h1>
+                </div>
+                
+                
                 <div
                     className={`w-full overflow-clip h-[65vh] mt-[5vh]`}
                 >
@@ -172,10 +163,11 @@ function FormPage() {
             
         </div>
         
-        <div className='h-[40vh]'></div>
+        <div className='h-[100vh]'></div>
         </div>
     </div>
   );
 }
 
 export default FormPage;
+
