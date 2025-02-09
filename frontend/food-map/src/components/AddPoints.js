@@ -23,7 +23,14 @@ function AddMarker({ setLat, setLon }) {
   return null;
 }
 
+
 export default function AddPoints(props) {
+  useEffect(() => {
+    const mapContainer = document.querySelector('.leaflet-container');
+    if (mapContainer) {
+      mapContainer.style.cursor = props.placementMode ? 'default' : 'grab';
+    }
+  }, [props.placementMode]);
 
   return (
     <div style={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: '10px', border: props.invalidForm ? '4px solid red' : ''}}>
@@ -63,3 +70,4 @@ export default function AddPoints(props) {
     </div>
   );
 }
+

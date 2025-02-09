@@ -36,13 +36,13 @@ function FormPage() {
       const [points, setPoints] = useState([]);
 
         useEffect(() => {
-            fetch('http://localhost:5000/points') // fetch('https://hackduke2025cvjdas.onrender.com/points')
+            fetch('https://hackduke2025cvjdas.onrender.com/points')
             .then((res) => res.json())
             .then((data) => setPoints(data));
         }, []);
 
         const handleNewPoint = (newPoint) => {
-            fetch('http://localhost:5000/points', { // fetch('https://hackduke2025cvjdas.onrender.com/points', { 
+            fetch('https://hackduke2025cvjdas.onrender.com/points', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -73,8 +73,11 @@ function FormPage() {
         <div className="rounded-full h-[110vw] w-[110vw] fixed opacity-50 z-0 custom-gradient top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
 
         <h1 className='text-white text-[4.5vw] font-semibold text-shadow-2 mt-[22vh] text-center z-[50] relative'>
-            Placeholder Text
+            What counts as a contribution?
         </h1>
+        <h2 className='text-white text-[1.25vw] text-left px-[19vw] z-10 relative mt-[3vh]'>
+        You can contribute by adding any location where food can be gathered. This includes fruit trees, berry bushes, and nut trees growing in public spaces or neglected areas. Mark community orchards, shared gardens, and abandoned groves that produce food. If you come across edible wild plants, herbs, or mushrooms, share their location along with any seasonal details. Report roadside produce stands that offer free or donation-based food. If a local organization maintains a food-sharing space, document it so others can benefit. Be as specific as possible, and include any relevant guidelines or restrictions to help foragers gather responsibly.
+        </h2>
 
         <div className="flex justify-center items-center h-full z-10 relative mt-[2vh] flex-col gap-5 px-[15vw] text-[1vw]">
         <div
@@ -143,7 +146,7 @@ function FormPage() {
                 
                 
                 <div
-                    className={`w-full overflow-clip h-[65vh] mt-[5vh]`}
+                    className={`w-full overflow-clip h-[65vh] mt-[5vh] ${placementMode ? "cursor-default" : ""}`}
                 >
                     <AddPoints className="h-full" points={points} lat={lat} lon={lon} setLat={setLat} setLon={setLon} invalidForm={invalidForm} placementMode={placementMode} setPlacementMode={setPlacementMode}/>
                 </div>
