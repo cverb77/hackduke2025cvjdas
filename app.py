@@ -5,8 +5,9 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 
-# Configure the database connection (PostgreSQL or SQLite)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://freefordb_user:1YdSmMFZYOJkTRmmM6px9pX3I7ZcujPS@dpg-cuk1fv2j1k6c73d3c8cg-a.virginia-postgres.render.com/freefordb'
+# Configure the database connection (PostgreSQL or SQLite) - restore top when pushed back
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://freefordb_user:1YdSmMFZYOJkTRmmM6px9pX3I7ZcujPS@dpg-cuk1fv2j1k6c73d3c8cg-a.virginia-postgres.render.com/freefordb'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@localhost:5432/forage_db'
 db = SQLAlchemy(app)
 
 # Define the model for points

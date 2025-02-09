@@ -7,7 +7,7 @@ import L from 'leaflet';
 // Custom icon definition
 const customIcon = new L.Icon({
   iconUrl: '/marker.png',
-  iconSize: [30, 30],  // Adjust size of the icon
+  iconSize: [40, 40],  // Adjust size of the icon
   iconAnchor: [15, 45],  // Anchor the icon properly
   popupAnchor: [0, -40], // Position the popup relative to the icon
 });
@@ -41,13 +41,13 @@ export default function Map() {
   const [placementMode, setPlacementMode] = useState(false);  // Toggle point placement mode
 
   useEffect(() => {
-    fetch('https://hackduke2025cvjdas.onrender.com/points')
+    fetch('http://localhost:5000/points') // https://hackduke2025cvjdas.onrender.com/points for main
       .then((res) => res.json())
       .then((data) => setPoints(data));
   }, []);
 
   const handleNewPoint = (newPoint) => {
-    fetch('https://hackduke2025cvjdas.onrender.com/points', {
+    fetch('http://localhost:5000/points', { // https://hackduke2025cvjdas.onrender.com/points for main
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ export default function Map() {
       </div>
 
       <div style={{ flexGrow: 1 }}>
-        <MapContainer attributionControl={false} center={[51.505, -0.09]} zoom={13} style={{ height: 'calc(100% - 62px)', width: '100%', borderBottomLeftRadius: '10px', borderBottomRightRadius: '10px' }}>
+        <MapContainer attributionControl={false} center={[38.8283, -98.5795]} zoom={4.5} style={{ height: 'calc(100% - 62px)', width: '100%', borderBottomLeftRadius: '10px', borderBottomRightRadius: '10px' }}>
           <TileLayer
             url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?api_key=a46d0fbc-36bf-4246-aa0b-bbe8635677e7"
             attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
