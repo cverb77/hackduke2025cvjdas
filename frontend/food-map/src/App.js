@@ -36,7 +36,7 @@ function App() {
       </div>
       <div className="flex justify-center items-center h-full z-10 relative -mt-[9rem]">
         <div className="w-full px-72 overflow-clip h-[55rem]">
-          <Map className="h-full" />
+          <AddPoints className="h-full" />
         </div>
       </div>
 
