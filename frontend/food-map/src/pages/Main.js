@@ -2,17 +2,47 @@
 import Map from '../components/Map';
 import Nav from '../components/Nav';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 function App() {
     const navigate = useNavigate();
+    const [locationCount, setLocationCount] = useState(0);
+    const [tableRows, setTableRows] = useState(() => {
+        // Get the initial value from localStorage or default to 0
+        return parseInt(localStorage.getItem("numRows")) || 0;
+    });
 
+    useEffect(() => {
+        // Fetch the current count from the backend
+        fetch('https://hackduke2025cvjdas.onrender.com/points')  // Replace with your backend URL
+            .then((res) => res.json())
+            .then((data) => {
+                const currentCount = data.length;
+                setLocationCount(currentCount);
+
+                // Update only if the count has changed
+                if (currentCount !== tableRows) {
+                    setTableRows(currentCount);
+                    localStorage.setItem("numRows", currentCount);
+                }
+            })
+            .catch((err) => console.error('Error fetching points:', err));
+    }, [tableRows]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, []);
+        
+        // Fetch points and count them
+        fetch('https://hackduke2025cvjdas.onrender.com/points')
+            .then((res) => res.json())
+            .then((data) => {
+                setLocationCount(data.length);  // Set the number of foraging locations
+            })
+            .catch((err) => console.error('Error fetching points:', err));
+    }, []);
 
+    
 
   return (
     <div>
@@ -31,8 +61,8 @@ function App() {
        
         <div className='w-full px-[15vw] z-10 relative'>
             <div className="bg-[#1d1d1d] w-full h-[10vh] mt-[7vh] rounded-tl-[2vw] rounded-tr-[2vw] flex">
-            {["STAT 1", "STAT 2", "STAT 3", "STAT 4"].map((stat, index) => (
-                <div key={index} className="flex-1 border-r-2 border-gray-500 flex justify-center text-white text-[1.5vw] font-semibold font-blinker last:border-r-0">
+            {[`${tableRows - 1} Foraging Locations`, "6500+ Food Deserts", "47M Americans Suffering from Food Insecurity", "4.7B Pounds of Food Rescued from Landfills"].map((stat, index) => (
+                <div key={index} className="flex-1 border-r-2 p-[2vw] leading-[1.2] text-center border-gray-500 flex justify-center text-white text-[1.25vw] font-semibold font-blinker last:border-r-0">
                 <p className='self-center'>{stat}</p>
                 </div>
             ))}
