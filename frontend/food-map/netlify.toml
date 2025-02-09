@@ -1,8 +1,0 @@
-[build]
-    base = "/"
-    publish = "build"
-  
-    command = "npm run build"
-
-[context.production.environment]
-    REACT_APP_API_URL = "https://your-production-api.com"
