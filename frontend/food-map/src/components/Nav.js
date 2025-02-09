@@ -13,7 +13,7 @@ export default function Nav() {
     <nav className="w-screen h-[10vh] flex justify-start fixed top-0 z-[9999] bg-[#1d1d1d] flex-col scale-[calc(100vw/1920)]">
       <ul className="pl-[15vw] flex gap-[1vw] text-white font-semibold font-blinker text-[1vw] h-full opacity-100 items-center">
         {[
-          { label: "SCARCITY MAP", path: "/" },
+          { label: "FORAGING MAP", path: "/" },
           { label: "OUR MISSION", path: "/mission" },
           { label: "ABOUT US", path: "/about" },
           { label: "JOIN THE EFFORT", path: "/contribute" }
