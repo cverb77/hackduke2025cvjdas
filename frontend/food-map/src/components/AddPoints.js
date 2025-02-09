@@ -36,7 +36,7 @@ function AddMarker({ onNewPoint }) {
   return null;
 }
 
-export default function Map() {
+export default function AddPoints(props) {
   const [points, setPoints] = useState([]);
   const [placementMode, setPlacementMode] = useState(false);  // Toggle point placement mode
 

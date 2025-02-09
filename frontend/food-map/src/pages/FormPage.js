@@ -1,8 +1,44 @@
 /* eslint-disable no-unused-vars */
 import Nav from '../components/Nav';
 import AddPoints from '../components/AddPoints';
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
 
 function App() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
+
+    const [canSubmit, changeCanSubmit] = useState(false);
+
+    const [invalidForm, setInvalidForm] = useState(false);
+
+    const [formData, setFormData] = useState({
+        title: "",
+        food: "",
+        description: "",
+        email: "",
+      });
+    
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+          ...formData,
+          [name]: value,
+        });
+      };
+    
+      const handleSubmit = () => {
+        if (formData.title === "" || formData.food === "" || !canSubmit) {
+            setInvalidForm(true)
+        } else {
+            navigate("/thankyou");
+        }
+      };
+
   return (
     <div>
         <div className="relative h-screen w-screen">
@@ -27,25 +63,78 @@ function App() {
             </div>
         </div>
         
-        <div className="flex justify-center items-center h-full z-10 relative mt-[-17.5vh]">
-            <div className="w-full px-[15vw] overflow-clip h-[65vh]">
-                <AddPoints className="h-full" />
+        <div className="flex justify-center items-center h-full z-10 relative mt-[-17.5vh] flex-col gap-5 px-[15vw] text-[1vw]">
+        <div
+            className="bg-[#1d1d1d] rounded-[2vw] shadow-lg w-full p-[6vh]"
+            onSubmit={handleSubmit}
+        >
+        <div className="mb-4">
+          <label htmlFor="title" className="block text-white mb-2 text-[1.5vw]">Title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            className={`w-full p-3 rounded-md text-white bg-[#1d1d1d] border-2 ${invalidForm ? "border-red-500" : "border-white"}`}
+            value={formData.title}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="food" className="block text-white mb-2 text-[1.5vw]">What Food?</label>
+          <input
+            type="text"
+            id="food"
+            name="food"
+            className={`w-full p-3 rounded-md text-white bg-[#1d1d1d] border-2 ${invalidForm ? "border-red-500" : "border-white"}`}
+            value={formData.food}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="description" className="block text-white mb-2 text-[1.5vw]">Description</label>
+          <textarea
+            id="description"
+            name="description"
+            className="w-full p-3 rounded-md text-white  bg-[#1d1d1d] border-2 border-white"
+            value={formData.description}
+            onChange={handleChange}
+            rows="4"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="email" className="block text-white mb-2 text-[1.5vw]">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            className="w-full p-3 rounded-md text-white bg-[#1d1d1d] border-2 border-white"
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </div>
+
+                <div className={`w-full overflow-clip h-[65vh] mt-[5vh]`}>
+                    <AddPoints className="h-full" canSubmit={canSubmit} changeCanSubmit={changeCanSubmit} invalidForm={invalidForm}/>
+                </div>
+
+                <div className="flex justify-center">
+                    <button
+                        className="w-[15vw] h-[7vh] mt-[4vh] bg-[#8cb638] flex justify-center self-center items-center rounded-xl text-white text-[1vw] font-semibold hover:underline"
+                        onClick={() => {
+                            handleSubmit();
+                        }}
+                    >
+                        Submit
+                    </button>
+                </div>
             </div>
+            
         </div>
         
-        <div className='w-full px-[15vw] z-10 relative mt-[-15vh]'>
-            <div className="bg-[#1d1d1d] w-full h-[60vh] mt-[5vh] rounded-[2vw] flex flex-col gap-[2vh] p-[3.5vw]">
-            <h1 className='text-white text-[2.5vw]'>Contribute</h1>
-            <h3 className='text-white text-[1vw] leading-[1.5vw]'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit, tortor nec bibendum luctus, elit mi suscipit tortor, a ultrices justo ipsum ac augueLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit, tortor nec bibendum luctus, elit mi suscipit tortor, a ultrices justo ipsum ac augueLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit, tortor nec bibendum luctus, elit mi suscipit tortor, a ultrices justo ipsum ac augueLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit, tortor nec bibendum luctus, elit mi suscipit tortor, a ultrices justo ipsum ac augueLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit, tortor nec bibendum luctus, elit mi suscipit tortor, a ultrices justo ipsum ac augue...
-            </h3>
-            <button className="w-[15vw] h-[7vh] mt-[4vh] bg-[#8cb638] flex justify-center self-center items-center rounded-xl text-white text-[1vw] font-semibold">
-                Help Make a Difference
-            </button>
-            </div>
-        </div>
-        
-        <div className='h-[10vh]'></div>
+        <div className='h-[40vh]'></div>
         </div>
     </div>
   );
