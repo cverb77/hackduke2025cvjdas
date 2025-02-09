@@ -32,13 +32,13 @@ export default function Map() {
 
   // Fetch points from the backend
   useEffect(() => {
-    fetch('https://hackduke2025cvjdas.onrender.com')
+    fetch('https://hackduke2025cvjdas.onrender.com/points')
       .then((res) => res.json())
       .then((data) => setPoints(data));
   }, []);
 
   const handleNewPoint = (newPoint) => {
-    fetch('https://hackduke2025cvjdas.onrender.com', {
+    fetch('https://hackduke2025cvjdas.onrender.com/points', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
