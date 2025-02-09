@@ -38,7 +38,6 @@ function AddMarker({ onNewPoint }) {
 
 export default function AddPoints(props) {
   const [points, setPoints] = useState([]);
-  const [placementMode, setPlacementMode] = useState(false);  // Toggle point placement mode
 
   useEffect(() => {
     fetch('https://hackduke2025cvjdas.onrender.com/points')
@@ -59,31 +58,15 @@ export default function AddPoints(props) {
   };
 
   return (
-    <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <div style={{ height: '62px', padding: '9px', background: 'rgb(87, 28, 28)', textAlign: 'center', borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }}>
-        <button
-          onClick={() => setPlacementMode(!placementMode)}
-          style={{
-            padding: '10px 20px',
-            background: placementMode ? 'rgb(87, 28, 28)' : 'green',
-            color: 'white',
-            border: 'none',
-            cursor: 'pointer',
-            borderRadius: '5px',
-          }}
-        >
-          {placementMode ? "I'd like to keep scrolling" : "I'm ready to place my point!"}
-        </button>
-      </div>
-
+    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: '10px', border: props.invalidForm ? '4px solid red' : ''}}>
       <div style={{ flexGrow: 1 }}>
-        <MapContainer attributionControl={false} center={[51.505, -0.09]} zoom={13} style={{ height: 'calc(100% - 62px)', width: '100%', borderBottomLeftRadius: '10px', borderBottomRightRadius: '10px' }}>
+        <MapContainer attributionControl={false} center={[51.505, -0.09]} zoom={13} style={{ height: '100%', width: '100%', borderRadius: '10px'}}>
           <TileLayer
             url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?api_key=a46d0fbc-36bf-4246-aa0b-bbe8635677e7"
             attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
 
-          {placementMode && <AddMarker onNewPoint={handleNewPoint} />}
+          {props.placementMode && <AddMarker onNewPoint={handleNewPoint} />}
 
           {points.map((point, idx) => (
             <Marker key={idx} position={[point.lat, point.lon]} icon={customIcon}>

@@ -5,16 +5,18 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
 
-function App() {
+function FormPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, []);
+    }, []);
 
     const [canSubmit, changeCanSubmit] = useState(false);
 
     const [invalidForm, setInvalidForm] = useState(false);
+
+    const [placementMode, setPlacementMode] = useState(false);
 
     const [formData, setFormData] = useState({
         title: "",
@@ -74,7 +76,7 @@ function App() {
             type="text"
             id="title"
             name="title"
-            className={`w-full p-3 rounded-md text-white bg-[#1d1d1d] border-2 ${invalidForm ? "border-red-500" : "border-white"}`}
+            className={`w-full p-3 rounded-md text-white bg-[#1d1d1d] border-2 ${invalidForm ? "border-red-500" : "border-white"} focus:border-[#8cb638] outline-none`}
             value={formData.title}
             onChange={handleChange}
           />
@@ -86,7 +88,7 @@ function App() {
             type="text"
             id="food"
             name="food"
-            className={`w-full p-3 rounded-md text-white bg-[#1d1d1d] border-2 ${invalidForm ? "border-red-500" : "border-white"}`}
+            className={`w-full p-3 rounded-md text-white bg-[#1d1d1d] border-2 ${invalidForm ? "border-red-500" : "border-white"} focus:border-[#8cb638] outline-none`}
             value={formData.food}
             onChange={handleChange}
           />
@@ -97,7 +99,7 @@ function App() {
           <textarea
             id="description"
             name="description"
-            className="w-full p-3 rounded-md text-white  bg-[#1d1d1d] border-2 border-white"
+            className="w-full p-3 rounded-md text-white  bg-[#1d1d1d] border-2 border-white focus:border-[#8cb638] outline-none"
             value={formData.description}
             onChange={handleChange}
             rows="4"
@@ -110,17 +112,27 @@ function App() {
             type="email"
             id="email"
             name="email"
-            className="w-full p-3 rounded-md text-white bg-[#1d1d1d] border-2 border-white"
+            className="w-full p-3 rounded-md text-white bg-[#1d1d1d] border-2 border-white focus:border-[#8cb638] outline-none"
             value={formData.email}
             onChange={handleChange}
           />
         </div>
-
+                
+                <h1 className="block text-white text-[1.5vw] mt-[3vh] -mb-[2vh]">Location</h1>
+                <button
+                    className="w-[15vw] h-[7vh] mt-[4vh] bg-[#8cb638] flex justify-center self-center items-center rounded-xl text-white text-[1vw] font-semibold hover:underline"
+                    onClick={() => {
+                        setPlacementMode(!placementMode)
+                    }}
+                >
+                    {placementMode ? "I'd like to keep scrolling" : "I'm ready to place my point!"}
+                </button>
                 <div className={`w-full overflow-clip h-[65vh] mt-[5vh]`}>
-                    <AddPoints className="h-full" canSubmit={canSubmit} changeCanSubmit={changeCanSubmit} invalidForm={invalidForm}/>
+                    <AddPoints className="h-full" canSubmit={canSubmit} changeCanSubmit={changeCanSubmit} invalidForm={invalidForm} placementMode={placementMode} setPlacementMode={setPlacementMode}/>
                 </div>
 
-                <div className="flex justify-center">
+                <div className="flex justify-center flex-col items-center">
+                    <p className={`text-xl text-red-600 mt-[3vh] -mb-[3vh] ${invalidForm ? "visible" : "hidden"}`}>Please complete the missing fields.</p>
                     <button
                         className="w-[15vw] h-[7vh] mt-[4vh] bg-[#8cb638] flex justify-center self-center items-center rounded-xl text-white text-[1vw] font-semibold hover:underline"
                         onClick={() => {
@@ -140,4 +152,4 @@ function App() {
   );
 }
 
-export default App;
+export default FormPage;
