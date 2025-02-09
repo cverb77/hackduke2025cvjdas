@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 import Map from './components/Map';
 import Nav from './components/Nav';
+import AddPoints from './components/AddPoints';
 
 function App() {
   return (
