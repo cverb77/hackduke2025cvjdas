@@ -1,25 +1,40 @@
-import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export default function Nav() {
-  // Set the default active tab to the first item in the array
-  const [active, setActive] = useState("SCARCITY MAP"); 
+  const location = useLocation();
+  const [active, setActive] = useState(location.pathname);
+
+  useEffect(() => {
+    setActive(location.pathname);
+  }, [location]);
 
   return (
-    <nav className="w-full h-32 flex justify-center fixed top-0 z-[9999] bg-[#1d1d1d] flex-col">
-        <ul className="px-10 ml-72 flex gap-8 text-white font-semibold font-blinker text-2xl h-full opacity-100">
-            {["SCARCITY MAP", "OUR MISSION", "ABOUT US", "JOIN THE EFFORT"].map((item) => (
-            <li
-                key={item}
-                className={`relative cursor-pointer pb-1 transition-all duration-300 w-[12rem] text-center flex items-center justify-center hover:underline ${item === "JOIN THE EFFORT" ? "text-[#a1d140]" : ""}`}
-                onClick={() => setActive(item)}
+    <nav className="w-screen h-[10vh] flex justify-start fixed top-0 z-[9999] bg-[#1d1d1d] flex-col scale-[calc(100vw/1920)]">
+      <ul className="pl-[15vw] flex gap-[1vw] text-white font-semibold font-blinker text-[1vw] h-full opacity-100 items-center">
+        {[
+          { label: "SCARCITY MAP", path: "/" },
+          { label: "OUR MISSION", path: "/mission" },
+          { label: "ABOUT US", path: "/about" },
+          { label: "JOIN THE EFFORT", path: "/contribute" }
+        ].map(({ label, path }) => (
+          <li
+            key={label}
+            className={`relative cursor-pointer pb-[0.5vh] transition-all duration-300 w-[8vw] text-center flex items-center justify-center hover:underline ${active === path ? "text-[#a1d140]" : ""}`}
+          >
+            <Link
+              to={path}
+              className="w-full h-full flex items-center justify-center"
+              onClick={() => setActive(path)} // Update active state when clicking
             >
-                {item}
-                {active === item && (
-                <div className="absolute left-0 bottom-0 w-[12rem] h-3 bg-[#8cb638]"></div> // Highlight active tab
-                )}
-            </li>
-            ))}
-        </ul>
+              {label}
+              {active === path && (
+                <div className="absolute left-0 bottom-[-3.1vh] w-[8vw] h-[0.75vh] bg-[#8cb638]"></div>
+              )}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 }
