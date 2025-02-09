@@ -143,7 +143,7 @@ function FormPage() {
                 
                 
                 <div
-                    className={`w-full overflow-clip h-[65vh] mt-[5vh]`}
+                    className={`w-full overflow-clip h-[65vh] mt-[5vh] ${placementMode ? "cursor-default" : ""}`}
                 >
                     <AddPoints className="h-full" points={points} lat={lat} lon={lon} setLat={setLat} setLon={setLon} invalidForm={invalidForm} placementMode={placementMode} setPlacementMode={setPlacementMode}/>
                 </div>

@@ -24,9 +24,6 @@ function App() {
             <h3 className='text-white text-[1vw] leading-[1.5vw]'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit, tortor nec bibendum luctus, elit mi suscipit tortor, a ultrices justo ipsum ac augueLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit, tortor nec bibendum luctus, elit mi suscipit tortor, a ultrices justo ipsum ac augueLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit, tortor nec bibendum luctus, elit mi suscipit tortor, a ultrices justo ipsum ac augueLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit, tortor nec bibendum luctus, elit mi suscipit tortor, a ultrices justo ipsum ac augueLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit, tortor nec bibendum luctus, elit mi suscipit tortor, a ultrices justo ipsum ac augue...
             </h3>
-            <button className="w-[15vw] h-[7vh] mt-[4vh] bg-[#8cb638] flex justify-center self-center items-center rounded-xl text-white text-[1vw] font-semibold">
-                Help Make a Difference
-            </button>
             </div>
         </div>
         
