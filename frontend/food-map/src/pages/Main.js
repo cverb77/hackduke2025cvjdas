@@ -46,7 +46,7 @@ function App() {
         </div>
        
         <div className='w-full px-[15vw] z-10 relative mt-[-15vh]'>
-            <div className="bg-[#1d1d1d] w-full h-[60vh] mt-[5vh] rounded-[2vw] flex flex-col gap-[2vh] p-[3.5vw]">
+            <div className="bg-[#1d1d1d] w-full h-[45vh] mt-[5vh] rounded-[2vw] flex flex-col gap-[2vh] p-[3.5vw]">
             <h1 className='text-white text-[2.5vw]'>Contribute</h1>
             <h3 className='text-white text-[1vw] leading-[1.5vw]'>
             If you are aware of any forageable food, please click the button below to add to our database! Whether you are a sustainable leader reporting your community orchard or a good samaritan reporting a strawberry patch on the side of the road, the data you are providing will help connect free, healthy food with those in need.
