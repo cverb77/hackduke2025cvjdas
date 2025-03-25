@@ -35,4 +35,15 @@ html, body {
   background: radial-gradient(ellipse, #9ccb20, transparent 60%); /* 9ccb20 */
 }
 
+@media (max-width: 768px) {
+  .custom-gradient {
+    background: none;
+  }
+
+  html, body {
+    /* background-attachment: scroll; /* Fixed background often causes jank on mobile */
+    /* background-size: cover;  */
+    background-color: #223b1d;
+  }
+}
 
