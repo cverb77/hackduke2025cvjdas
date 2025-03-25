@@ -1,0 +1,4 @@
+# Ignore build directories
+frontend/foot-map/build/
+frontend/food-map/node-modules/
+hd25/
