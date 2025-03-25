@@ -11,7 +11,7 @@ function Mission() {
         <div className="rounded-full h-[110vw] w-[110vw] fixed opacity-50 z-0 custom-gradient top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
 
         <h1 className='text-white text-[8vw] md:text-[4.5vw] font-semibold text-shadow-2 mt-[12vh] md:mt-[22vh] text-center z-10 relative'>
-          Our Mission:
+          Our Mission
         </h1>
         <h2 className='text-white text-[4vw] md:text-[2vw] text-shadow-2 text-center z-10 relative'>
           Healthy Food for All
